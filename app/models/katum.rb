@@ -1,2 +1,0 @@
-class Katum < ApplicationRecord
-end
