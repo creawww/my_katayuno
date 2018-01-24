@@ -36,6 +36,12 @@ class KatasController < ApplicationController
     end
   end
 
+  def delete
+      kata = Kata.find(params[:id])
+      kata.delete
+      redirect_to root_path
+  end
+
 private
   def kata_params
   params.require(:kata).permit(:title, :description)
