@@ -4,7 +4,7 @@
   <li>
   <%= link_to(kata.title, kata_path(kata.id))%>
    - <%= link_to('Edit',  edit_kata_path(kata.id)) %>
-  - <%= link_to('delete',  delete_kata_path(kata.id), {method: :delete, data: {confirm: "Are you sure?"}}) %>
+  - <%= link_to('delete', kata_path(kata.id), {method: :delete, data: {confirm: "Are you sure?"}}) %>
   </li>
   <% end %>
 </ul>
