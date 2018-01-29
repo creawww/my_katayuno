@@ -1,49 +1,45 @@
 class KatasController < ApplicationController
+before_action :set_kata, only: [:show, :edit, :update, :destroy]
+
   def index
     @katas = Kata.all
   end
 
   def show
-    @kata = Kata.find(params[:id])
   end
 
   def new
-
+    @kata = Kata.new
   end
 
   def create
-    kata = Kata.new(title: params[:title], description: params[:description])
-
-    if kata.save
-      redirect_to kata_path(kata.id)
+    @kata = Kata.new(kata_params)
+    if @kata.save
+      redirect_to kata_path(@kata.id)
     else
       render :new
     end
   end
 
   def edit
-      @kata = Kata.find(params[:id])
   end
 
   def update
-    kata = Kata.find(params[:id])
-    kata.title = params[:kata][:title]
-    kata.description = params[:kata][:description]
-    if kata.save
-      redirect_to kata_path(kata.id)
-    else
-      render :new
-    end
+    @kata.update(kata_params)
+    redirect_to kata_path(@kata.id)
   end
 
   def destroy
-      kata = Kata.find(params[:id])
-      kata.delete
-      redirect_to root_path
+    @kata.delete
+    redirect_to root_path
   end
 
-private
-  def kata_params
-  params.require(:kata).permit(:title, :description)
-  end
+  private
+    def kata_params
+      params.require(:kata).permit(:title, :description)
+    end
+
+    def set_kata
+      @kata = Kata.find(params[:id])
+    end
 end

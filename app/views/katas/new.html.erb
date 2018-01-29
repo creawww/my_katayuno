@@ -1,11 +1,2 @@
 <h1>new kata</h1>
-<p>
-  <%= form_tag(katas_path) do %>
-
-    <p><%= text_field_tag :title %> </p>
-    <p><%= text_field_tag :description %> </p>
-    <p><%= submit_tag %> </p>
-
-  <% end %>
-
-</p>
+<%= render 'form', note: @kata %>
